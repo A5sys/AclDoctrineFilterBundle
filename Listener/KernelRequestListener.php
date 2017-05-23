@@ -75,6 +75,9 @@ class KernelRequestListener
         if ($token) {
             /* @var $token UserInterface */
             $user = $token->getUser();
+            if (!$user instanceof UserInterface) {
+                return false;
+            }
 
             $roles = $user->getRoles();
 
