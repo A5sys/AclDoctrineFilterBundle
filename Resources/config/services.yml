@@ -1,9 +1,7 @@
 services:
     a5sys_acl_doctrine_filter.kernel_request_listener:
         class: A5sys\AclDoctrineFilterBundle\Listener\KernelRequestListener
-        arguments:
-            - "@doctrine.orm.entity_manager"
-            - "@security.token_storage"
-            - "%acl_doctrine_filter.no_acl_roles%"
+        bind:
+            $roles: "%acl_doctrine_filter.no_acl_roles%"
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest}
