@@ -3,14 +3,11 @@
 namespace A5sys\AclDoctrineFilterBundle\Listener;
 
 use A5sys\AclDoctrineFilterBundle\Filter\AclFilter;
-use Doctrine\ORM\EntityManager;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
-/**
- *
- */
 class KernelRequestListener
 {
     private $em;
@@ -19,11 +16,11 @@ class KernelRequestListener
 
     /**
      *
-     * @param EntityManager $em
-     * @param TokenStorage  $tokenStorage
-     * @param []            $roles
+     * @param EntityManagerInterface $em
+     * @param TokenStorageInterface  $tokenStorage
+     * @param string[]               $roles
      */
-    public function __construct(EntityManager $em, TokenStorage $tokenStorage, array $roles)
+    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage, array $roles)
     {
         $this->em = $em;
         $this->tokenStorage = $tokenStorage;
@@ -32,9 +29,9 @@ class KernelRequestListener
 
     /**
      *
-     * @param GetResponseEvent $event
+     * @param ViewEvent $event
      */
-    public function onKernelRequest(GetResponseEvent $event)
+    public function onKernelRequest(ViewEvent $event)
     {
         $disableFilters = !$this->isAclEnabled();
 
