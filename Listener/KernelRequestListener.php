@@ -5,8 +5,8 @@ namespace A5sys\AclDoctrineFilterBundle\Listener;
 use A5sys\AclDoctrineFilterBundle\Filter\AclFilter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
 class KernelRequestListener
 {
