@@ -4,7 +4,7 @@ namespace A5sys\AclDoctrineFilterBundle\Listener;
 
 use A5sys\AclDoctrineFilterBundle\Filter\AclFilter;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpKernel\Event\ViewEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -27,11 +27,7 @@ class KernelRequestListener
         $this->roles = $roles;
     }
 
-    /**
-     *
-     * @param ViewEvent $event
-     */
-    public function onKernelRequest(ViewEvent $event)
+    public function onKernelRequest(RequestEvent $event)
     {
         $disableFilters = !$this->isAclEnabled();
 
@@ -47,10 +43,6 @@ class KernelRequestListener
         }
     }
 
-    /**
-     *
-     * @param AclFilter $filter
-     */
     protected function setFilterParameters(AclFilter $filter)
     {
         $token = $this->tokenStorage->getToken();
