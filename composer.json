@@ -8,7 +8,7 @@
     "require": {
         "php": ">=7.3",
         "doctrine/orm": ">=2.2.3",
-        "symfony/framework-bundle": ">=4.0.0",
+        "symfony/framework-bundle": "^5.0|^6.0",
         "symfony/service-contracts": "*"
     }
 }

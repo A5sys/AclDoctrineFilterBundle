@@ -1,4 +1,6 @@
 
+*Deprecated in favor of https://www.doctrine-project.org/projects/doctrine-orm/en/2.8/reference/filters.html*
+
 # AclDoctrineFilterBundle
 
 This bundles allow to filter doctrine entities automatically
